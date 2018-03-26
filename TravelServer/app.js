@@ -12,6 +12,8 @@ var cors = require('cors');
 
 require('./configs/passport-config');
 
+// localhost database connection
+mongoose.connect('mongodb://localhost/TravelNext');
 
 var app = express();
 
@@ -24,6 +26,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Add session here
+app.use(session({
+	secret:"TravelNext",
+	resave: true,
+	saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(
+	cors({
+		credentials: true,					// allow other domains to send cookies
+		origin: ["http://localhost:4200"]	// domains that are allowed....
+	})
+);
 
 
 // ========== Routing ==========================
