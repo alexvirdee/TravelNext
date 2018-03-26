@@ -30,8 +30,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 var index = require('./routes/index');
 app.use('/', index);
 
-// var authRoutes = require('./routes/auth');
-// app.use('/auth', authRoutes);
+var authRoutes = require('./routes/auth');
+app.use('/auth', authRoutes);
 
 
 // ==============================================
