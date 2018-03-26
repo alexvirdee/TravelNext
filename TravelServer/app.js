@@ -10,6 +10,8 @@ var passport = require('passport');
 var logger = require('morgan');
 var cors = require('cors');
 
+require('./configs/passport-config');
+
 
 var app = express();
 
@@ -27,6 +29,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ========== Routing ==========================
 var index = require('./routes/index');
 app.use('/', index);
+
+// var authRoutes = require('./routes/auth');
+// app.use('/auth', authRoutes);
 
 
 // ==============================================
