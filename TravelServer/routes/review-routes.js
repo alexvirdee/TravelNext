@@ -71,3 +71,30 @@ reviewRoutes.post('/api/city/:id/review/new', reviewUploader.single('reviewPhoto
 		});
 	});
 });
+
+// delete review
+reviewRoutes.delete('/api/city/:id', (req, res, next) => {
+	if (!req.user) {
+		res.status(401).json({ message: "login to delete review."});
+		return;
+	}
+	if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+		res.status(400).json({message: "Specified id is not valid."});
+		return;
+	}
+	Review.remove({ _id: req.params.id }, err => {
+		if (err) {
+			res.jason(err);
+			return;
+		}
+
+		res.json({
+			message: "Review has been successfully removed."
+		});
+	});
+});
+
+
+
+
+
