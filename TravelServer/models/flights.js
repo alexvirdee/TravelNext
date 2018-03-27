@@ -13,6 +13,10 @@ const FlightSchema = new Schema({
 	 },
 	 {
 	 	timestamps: true
+	 },
+	 flyer: {
+	 	type: Schema.Types.ObjectId,
+	 	ref: 'User'
 	 }
 });
 

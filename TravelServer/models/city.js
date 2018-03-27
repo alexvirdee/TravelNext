@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Review = require('./review');
 
 // city schema for app
 const CitySchema = new Schema({
@@ -7,9 +8,7 @@ const CitySchema = new Schema({
 		type: String,
 		required: false
 	},
-	// reviews: {
-	// 	type: 
-	// }
+	reviews: [Review.schema]
 });
 
 const City = mongoose.model('City', CitySchema);
