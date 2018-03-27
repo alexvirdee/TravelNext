@@ -54,7 +54,7 @@ authRoutes.post('/signup', (req, res, next) => {
 });
 
 
-authRoutes.post('login', (req, res, next) => {
+authRoutes.post('/login', (req, res, next) => {
 	const authenticateFunction = passport.authenticate('local', (err, theUser, failureDetails) => {
 
 		if (err) {
