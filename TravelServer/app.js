@@ -51,6 +51,9 @@ app.use('/', index);
 var authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 
+var reviewRoutes = require('./routes/review-routes');
+app.use('/', reviewRoutes);
+
 
 // ==============================================
 

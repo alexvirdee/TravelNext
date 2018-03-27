@@ -65,11 +65,10 @@ reviewRoutes.post('/api/city/:id/review/new', reviewUploader.single('reviewPhoto
 					newReview.user = req.user;
 
 					res.status(200).json(
-							newReview
-						)};
+							newReview)
+						});
 			});
 		});
-	});
 });
 
 // delete review
@@ -95,6 +94,4 @@ reviewRoutes.delete('/api/city/:id', (req, res, next) => {
 });
 
 
-
-
-
+module.exports = reviewRoutes;
