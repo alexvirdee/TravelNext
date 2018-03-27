@@ -33,6 +33,41 @@ reviewRoutes.post('/api/city/:id/review/new', reviewUploader.single('reviewPhoto
 			content: req.body.content,
 			date: Date.now(),
 			image: req.body.image || ''
-		})
-	})
-})
+		});
+		console.log("this is the file: ", req.file)
+		if (req.file) {
+			newReview.image = '/uploads/' + req.file.filename;
+		}
+		thisCity.reviews.push(newReview);
+		thisCity.save(err => {
+			if (err) {
+				res.status(500).json({
+					message: `Error has occurred from the database: ${err}`
+				});
+				return;
+			}
+			newReview.save((err) => {
+				if (err) {
+					res.status(500).json(
+						{message: `Error has occurred from the database: ${err}`
+						});
+					return;
+					}
+					// validation errors
+					if (err && newReview.errors) {
+						res.status(400).json({
+							titleError:
+								newReview.errors.title
+						});
+						return;
+					}
+					req.user.encryptedPassword = undefined;
+					newReview.user = req.user;
+
+					res.status(200).json(
+							newReview
+						)};
+			});
+		});
+	});
+});
