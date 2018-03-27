@@ -45,7 +45,6 @@ authRoutes.post('/signup', (req, res, next) => {
                 // clear the encrypted password before sending
                 // from the object
                 theUser.encryptedPassword = undefined;
-
                 // Send the users information to the frontend 
                 res.status(200).json(theUser);
             });
