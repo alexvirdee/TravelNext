@@ -54,18 +54,51 @@ authRoutes.post('/signup', (req, res, next) => {
 });
 
 
+authRoutes.post('login', (req, res, next) => {
+	const authenticateFunction = passport.authenticate('local', (err, theUser, failureDetails) => {
+
+		if (err) {
+			res.status(500).json({message: "There has been an unkown error with the login."});
+			return;
+		}
 
 
+		if (!theUser) {
+			res.status(401).json(failureDetails);
+			return;
+		}
+		// login successful, save the user in a session
+		req.login(theUser, (err) => {
+			if (err) {
+				res.status(500).json({message:"Saving the session has gone wrong."});
+				return;
+			}
+
+			// clear the encrypted password before sending from the object
+			theUser.encryptedPassword = undefined;
+
+			// everything worked, send the user's information to Angular
+			res.status(200).json(theUser);
+		});
+	});
+	authenticateFunction(req, res, next);
+});
 
 
+authRoutes.post('/logout', (req, res, next) => {
+	req.logout();
+	res.status(200).json({message: "logged out successfully 😎"
+	});
+});
 
+authRoutes.get('/checklogin', (req, res, next) => {
+	if (req.isAuthenticated()) {
+		res.status(200).json(req.user);
+		return;
+	}
 
-
-
-
-
-
-
+	res.status(401).json({message: "Unauthorized."});
+});
 
 
 
