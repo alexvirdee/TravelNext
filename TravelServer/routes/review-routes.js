@@ -104,6 +104,26 @@ reviewRoutes.put('/api/city/:id/review/edit', (req, res, next) => {
 	});
 });
 
+// view reviews for specific city
+reviewRoutes.get('/api/city/:id/reviews', (req, res, next) => {
+	if (!req.user) {
+		res.status(401).json({message: "Please login to see user reviews"});
+		return;
+	}
+	Review.find()
+	// retrieve info of owners
+	.populate('user', { encryptedPassword: 0 })
+	.exec((err, allTheReviews) => {
+		if (err) {
+			res.status(500).json({ message: "Finding reviews error."});
+			return;
+		}
+		res.status(200).json(allTheReviews);
+	});
+});
+
+
+
 // delete review
 reviewRoutes.delete('/api/city/:id', (req, res, next) => {
 	if (!req.user) {
