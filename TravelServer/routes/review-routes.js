@@ -71,6 +71,39 @@ reviewRoutes.post('/api/city/:id/review/new', reviewUploader.single('reviewPhoto
 		});
 });
 
+// update user review
+reviewRoutes.put('/api/city/:id/review/edit', (req, res, next) => {
+	const reviewId = req.params.reviewId;
+	console.log("This is this reviews ID: ", reviewId);
+	console.log(typeof(reviewId))
+	if (!req.user) {
+		res.status(401).json({message: "Please login to update your review"});
+		return;
+	}
+	if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+		res.status(400).json({message: "That ID is not valid"});
+		return;
+	}
+
+	Review.findById(reviewId, function(err, theReview) {
+		console.log("This is the review: ", theReview)
+
+		var theUpdate = {_author: req.user._id , content: req.body.content }
+
+		theReview.push(theUpdate);
+		theReview.save(function(err) {
+			if(err) {
+				console.log("err: ", err)
+				return;
+			}
+
+			res.json({
+				message: "Review has been updated successfully"
+			});
+		});
+	});
+});
+
 // delete review
 reviewRoutes.delete('/api/city/:id', (req, res, next) => {
 	if (!req.user) {
