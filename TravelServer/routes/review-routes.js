@@ -123,7 +123,6 @@ reviewRoutes.get('/api/city/:id/reviews', (req, res, next) => {
 });
 
 
-
 // delete review
 reviewRoutes.delete('/api/city/:id', (req, res, next) => {
 	if (!req.user) {
