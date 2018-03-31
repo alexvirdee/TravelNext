@@ -18,6 +18,9 @@ const FlightSchema = new Schema({
 	 	type: Schema.Types.ObjectId,
 	 	ref: 'User'
 	 }
+
+
+	 
 });
 
 
