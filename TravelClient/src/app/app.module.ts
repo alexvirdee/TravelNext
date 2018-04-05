@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { LogoutComponent } from './components/logout/logout.component';
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule
