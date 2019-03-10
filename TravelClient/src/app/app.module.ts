@@ -11,8 +11,20 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { FooterComponent } from './components/footer/footer.component';
+import { Error404Component } from './components/error404/error404.component';
+
+// ROUTING
+import { RouterModule, Routes } from '@angular/router';
 
 
+const appRoutes: Routes = [
+  { path: '', 
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  { path: 'login', component: LoginComponent },
+  { path: '**', component: Error404Component }
+]
 
 
 @NgModule({
@@ -22,9 +34,14 @@ import { FooterComponent } from './components/footer/footer.component';
     LoginComponent,
     LogoutComponent,
     FilterPipe,
-    FooterComponent
+    FooterComponent,
+    Error404Component
   ],
   imports: [
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- for debugging
+    ),
     BrowserModule
   ],
   providers: [],
