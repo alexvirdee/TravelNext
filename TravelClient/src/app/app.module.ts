@@ -10,6 +10,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -20,7 +21,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     NavbarComponent,
     LoginComponent,
     LogoutComponent,
-    FilterPipe
+    FilterPipe,
+    FooterComponent
   ],
   imports: [
     BrowserModule
