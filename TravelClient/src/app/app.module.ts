@@ -16,6 +16,7 @@ import { Error404Component } from './components/error404/error404.component';
 // ROUTING
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
+import { DestinationsComponent } from './components/destinations/destinations.component';
 
 
 const appRoutes: Routes = [
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'destinations', component: DestinationsComponent },
   { path: '**', component: Error404Component }
 ]
 
@@ -38,7 +40,8 @@ const appRoutes: Routes = [
     FilterPipe,
     FooterComponent,
     Error404Component,
-    AboutComponent
+    AboutComponent,
+    DestinationsComponent
   ],
   imports: [
     RouterModule.forRoot(
