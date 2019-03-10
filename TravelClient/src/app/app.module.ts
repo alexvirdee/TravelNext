@@ -15,6 +15,7 @@ import { Error404Component } from './components/error404/error404.component';
 
 // ROUTING
 import { RouterModule, Routes } from '@angular/router';
+import { AboutComponent } from './components/about/about.component';
 
 
 const appRoutes: Routes = [
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   { path: 'login', component: LoginComponent },
+  { path: 'about', component: AboutComponent },
   { path: '**', component: Error404Component }
 ]
 
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     LogoutComponent,
     FilterPipe,
     FooterComponent,
-    Error404Component
+    Error404Component,
+    AboutComponent
   ],
   imports: [
     RouterModule.forRoot(
